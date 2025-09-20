@@ -5,6 +5,15 @@ import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import Cookies from 'js-cookie';
 
+type MenuItem = {
+  name: string;
+  icon: JSX.Element;
+  color: string;
+  isAction: boolean;
+  href?: string;                 // hanya ada kalau bukan action
+  action?: () => void;           // hanya ada kalau action (contoh: logout)
+};
+
 export default function Sidebar() {
     const [activeItem, setActiveItem] = useState('Beranda');
     const router = useRouter();
@@ -29,6 +38,7 @@ export default function Sidebar() {
             window.location.href = '/auth/login';
         }, 100); // Small delay untuk memastikan cookies terhapus
     };
+    
 
     const menuItems = [
         {
@@ -128,7 +138,7 @@ export default function Sidebar() {
     }, [pathname]);
 
     // Function untuk mengecek apakah item sedang aktif
-    const isItemActive = (item: any) => {
+    const isItemActive = (item: MenuItem) => {
         if (item.isAction) {
             return activeItem === item.name;
         }
@@ -136,7 +146,7 @@ export default function Sidebar() {
     };
 
     // Render function untuk desktop menu
-    const renderMenuItem = (item: any, index: number) => {
+    const renderMenuItem = (item: MenuItem, index: number) => {
         const buttonClass = `w-full flex items-center gap-3 px-3 lg:px-4 py-2.5 lg:py-3 text-sm font-medium rounded-lg transition-all duration-200 hover:bg-gray-50 hover:scale-105 hover:shadow-sm group ${activeItem === item.name
             ? 'bg-orange-50 text-orange-600 border-l-4 border-orange-600'
             : 'text-gray-600 hover:text-gray-800'
@@ -191,7 +201,7 @@ export default function Sidebar() {
     };
 
     // Render function untuk mobile menu
-    const renderMobileMenuItem = (item: any, index: number) => {
+    const renderMobileMenuItem = (item: MenuItem, index: number) => {
         const buttonClass = `flex flex-col items-center gap-2 text-xs font-medium transition-all duration-200 ${activeItem === item.name
             ? 'text-orange-600'
             : 'text-gray-600 hover:text-orange-500'
