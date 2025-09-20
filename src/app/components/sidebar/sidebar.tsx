@@ -1,13 +1,13 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, ReactNode } from 'react';
 import Link from 'next/link';
 import { useRouter, usePathname } from 'next/navigation';
 import Cookies from 'js-cookie';
 
 type MenuItem = {
   name: string;
-  icon: JSX.Element;
+  icon: ReactNode;
   color: string;
   isAction: boolean;
   href?: string;                 // hanya ada kalau bukan action
