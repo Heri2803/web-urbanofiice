@@ -82,7 +82,7 @@ const MailsPage: React.FC = () => {
                                 {/* Customer Message */}
                                 <div className="bg-gray-50 rounded-lg p-3 md:p-4">
                                     <p className="text-gray-700 text-sm md:text-base">
-                                        "Bisa dibantu siapkan dokumennya"
+                                        Bisa dibantu siapkan dokumennya
                                     </p>
                                 </div>
 
