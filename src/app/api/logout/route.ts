@@ -1,8 +1,10 @@
-import { NextResponse } from "next/server";
 import { cookies } from "next/headers";
+import { NextResponse } from "next/server";
 
 export async function POST() {
-  cookies().delete("isLoggedIn");
-  cookies().delete("userEmail");
+  const cookieStore = await cookies(); // tunggu promise selesai
+  cookieStore.delete("isLoggedIn");
+  cookieStore.delete("userEmail");
+
   return NextResponse.json({ success: true });
 }
