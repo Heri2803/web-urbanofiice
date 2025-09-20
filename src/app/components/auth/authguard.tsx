@@ -21,6 +21,7 @@ export default function AuthGuard({ children }: AuthGuardProps) {
       const isLoggedIn = Cookies.get('isLoggedIn');
       const userEmail = Cookies.get('userEmail');
       const loginTime = Cookies.get('loginTime');
+      
 
       console.log('AuthGuard: Cookies found:', { isLoggedIn, userEmail, loginTime });
 
@@ -34,7 +35,8 @@ export default function AuthGuard({ children }: AuthGuardProps) {
       if (loginTime) {
         const loginDate = new Date(loginTime);
         const now = new Date();
-        const hoursDiff = (now - loginDate) / (1000 * 60 * 60);
+        const hoursDiff = (now.getTime() - loginDate.getTime()) / (1000 * 60 * 60);
+
 
         if (hoursDiff > 24) {
           console.log('AuthGuard: Session expired, clearing cookies and redirecting');
