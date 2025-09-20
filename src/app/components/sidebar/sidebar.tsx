@@ -179,7 +179,7 @@ export default function Sidebar() {
                     key={item.name}
                     onClick={() => {
                         setActiveItem(item.name);
-                        item.action();
+                        item.action?.();
                     }}
                     className={buttonClass}
                 >
@@ -220,7 +220,7 @@ export default function Sidebar() {
                     key={item.name}
                     onClick={() => {
                         setActiveItem(item.name);
-                        item.action();
+                        item.action?.();
                     }}
                     className={buttonClass}
                 >
